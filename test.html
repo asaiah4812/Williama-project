@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .checked{
+            text-decoration: line-through;
+        }
+        li{
+            display: flex ;
+            width: 150px;
+            justify-content: space-between;
+        }
+        span{
+            cursor: pointer;
+        }
+    </style>
+    <input type="text" id="newTodo">
+    <button onclick="addTodo()">click</button>
+    <ul id="todolist">
+
+    </ul>
+    <script>
+        let h1 = document.querySelector('h1');
+        let newTodo = document.getElementById('newTodo');
+        let list = document.getElementById('todolist');
+        function addTodo(){
+            if (newTodo.value === ''){
+                alert('Please enter a Todo')
+            } else{
+                let li = document.createElement('li');
+                li.innerHTML = newTodo.value;
+                list.appendChild(li);
+                let span = document.createElement('span');
+                span.innerHTML = '⚔'
+                li.appendChild(span);
+                newTodo.value = '';
+            }
+            save()
+        }
+        document.addEventListener('click', function(e) {
+            if(e.target.tagName === 'LI'){
+                e.target.classList.toggle('checked');
+            } else if (e.target.tagName === 'SPAN') {
+                e.target.parentElement.remove()
+            }
+        })
+
+        const save = () => {
+            localStorage.setItem('data', list)
+            const data = localStorage.getItem('data')
+        }
+
+        const data = fetch('./products.json').then(res => res.json()).then(data => console.log(data))
+        const ary = ['asaiah',2,{name:'victor'},5,15,]
+        
+        for (let i = 0; i < data.length; i++) {
+            console.log(data[i])
+        }
+        // let span = document.createElement('span');
+        // const list = [
+        //     {
+        //         id:1,
+        //         name: 'asaiah'
+        //     },
+        //     {
+        //         id:2,
+        //         name: 'victor'
+        //     },
+        //     {
+        //         id:3,
+        //         name: 'object'
+        //     },
+        //     {
+        //         id:4,
+        //         name: 'john'
+        //     },
+        //     {
+        //         id:5,
+        //         name: 'david'
+        //     },
+        // ]
+        // list.map((lis, index)=> (
+        //      h1.innerHTML= `
+        //         <span>${lis.name}</span>
+        //     `
+        // )).join('');
+        // list.forEach(me => {
+        //     return span.innerHTML = me.namet
+        // })
+
+        // const data = {
+        //     name:'Asaiah',
+        //     clas:'jss1',
+        //     school:'GDSS',
+        // }
+        // function func(){
+        //     let num = 34
+        //     console.log(Math.sqrt(num) + typeof data.name)
+        // }
+    </script>
+</body>
+</html>

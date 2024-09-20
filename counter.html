@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1></h1>
+    
+    <button onclick="add()">add</button> <span>0</span> <button onclick="reduce()">reduce</button>
+    <script>
+        let names = ["a", "b", "c", "d", "e", "f"]
+        for(let i = 0; i < names.length; i++) {
+            console.log(names[i])
+        }
+        let day = document.querySelector('h1')
+        const num = document.querySelector('span');
+        let value = 0
+        function add(){
+            value++
+            num.innerHTML  = value
+        }
+        if(value <= 10){
+            num.style.color = 'red';
+            setInterval(add, 1000)
+        }else if (value === 20){
+            num.style.color = 'blue';
+            setInterval(add, 1000)
+        }
+        
+        function Timer(){
+            let date = new Date();
+            day.innerText = date.toLocaleTimeString();
+        }
+        setInterval(Timer, 100)
+    </script>
+</body>
+</html>
